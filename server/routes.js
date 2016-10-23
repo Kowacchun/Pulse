@@ -1,4 +1,3 @@
 module.exports = {
-	// key : value
-	'/movie' : require ('./controllers/MovieController')
+  'movie': require('./controllers/MovieController')
 };

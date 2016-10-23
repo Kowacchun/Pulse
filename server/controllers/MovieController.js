@@ -1,17 +1,11 @@
-// takes a mongoose model and converts it into REST api
-var restful = require ('node-restful');
+var Resource = require('resourcejs');
+module.exports = function(app, route) {
 
-module.exports = function (app, route) {
-	// setup controller for REST
-	var rest = restful.model (
-		'movie',
-		app.models.movie
-	).methods(['get', 'put', 'post', 'delete']);
+  // Setup the controller for REST;
+  Resource(app, '', route, app.models.movie).rest();
 
-	rest.register(app, route);
-
-	// return middleware
-	return function (req, rest, next) {
-		next();
-	};
-}
+  // Return middleware.
+  return function(req, res, next) {
+    next();
+  };
+};
